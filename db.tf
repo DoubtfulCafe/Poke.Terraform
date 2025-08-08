@@ -10,3 +10,10 @@ resource "azurerm_mssql_server" "sqlserver" {
     tags = var.tags
 
 }
+
+resource "azurerm_mssql_database" "db" {
+    name = "${ var.project }db"
+    server_id = azurerm_mssql_server.sqlserver.id
+    sku_name = "S0"
+    tags = var.tags
+}
